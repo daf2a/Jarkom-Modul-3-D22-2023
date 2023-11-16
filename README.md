@@ -1,13 +1,13 @@
 # Jarkom-Modul-3-D22-2023
 
-# Anggota
+## Anggota
 
 | NRP        | Name                          |
 | ---------- | ----------------------------- |
 | 5025211016 | Thomas Juan Mahardika Suryono |
 | 5025211015 | Muhammad Daffa Ashdaqfillah   |
 
-# Daftar Isi
+## Daftar Isi
 
 - [Setup](#setup)
   - [DNS Configruation](#dns-configuration-heiter) (Heiter)
@@ -29,7 +29,7 @@
 - [Kendala Pengerjaan](#kendala-pengerjaan)
 
 
-# Setup
+## Setup
 
 ### Topologi Map:
 
@@ -631,7 +631,7 @@ chown -R www-data.www-data /var/www/laravel-praktikum-jarkom/storage
 
 [<< Daftar Isi](#daftar-isi)
 
-# Penyelesaian
+## Penyelesaian
 
 ### Permasalahan
 
@@ -787,8 +787,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   }
   ```
 
-### Screenshot Hasil
-
 ## Soal 3
 
 > 3. Client yang melalui Switch4 mendapatkan range IP dari [prefix IP].4.12 - [prefix IP].4.20 dan [prefix IP].4.160 - [prefix IP].4.168 **(3)**
@@ -804,8 +802,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
       option routers 192.202.4.200;
   }
   ```
-
-### Screenshot Hasil
 
 ## Soal 4
 
@@ -1583,9 +1579,9 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 [<< Daftar Isi](#daftar-isi)
 
 
-# Grimoire Summary
+## Grimoire Summary
 
-## Permasalahan Grimoire
+### Permasalahan Grimoire
 
 1. Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut:
     1. Nama Algoritma Load Balancer
