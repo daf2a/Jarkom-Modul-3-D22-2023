@@ -1,10 +1,5 @@
 # Jarkom-Modul-3-D22-2023
 
-Class: JARKOM D (https://www.notion.so/JARKOM-D-7b802bee467e4410bcc086aefefcdc5d?pvs=21)
-Files: Resource/img/prak3\_(4).gns3project
-Status: In Progress
-Last edited time: November 16, 2023 2:39 PM
-
 # Anggota
 
 | NRP        | Name                          |
@@ -14,21 +9,21 @@ Last edited time: November 16, 2023 2:39 PM
 
 # Daftar Isi
 
-- [Setup](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
-  - [DNS Configruation](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21) (Heiter)
-  - [DHCP Server](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21) (Himmel)
-  - [DHCP Relay](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21) (Aura)
-  - [Database Server](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21) (Denken)
-  - [Load Balancer](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21) (Eisen)
-  - [Client](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21) (Stark, Sein, Revolte, Richter)
-  - [Worker PHP](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21) (Lawine, Linie, Lugner)
-  - [Worker Laravel](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21) (Frieren, Flamme, Fren)
-- [Penyelesaian](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
-  - [Permasalahan](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
-  - [Soal 1-5](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
-  - [Soal 6-12](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
-  - [Soal 13-20](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
-- [Grimoire Summary](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+- [Setup](#setup)
+  - [DNS Configruation](#dns-configuration-heiter) (Heiter)
+  - [DHCP Server](#dhcp-server-himmel) (Himmel)
+  - [DHCP Relay](#dhcp-relay-aura) (Aura)
+  - [Database Server](#database-server-denken) (Denken)
+  - [Load Balancer](#load-balancer-eisen) (Eisen)
+  - [Client](#client-stark-sein-revolte-richter) (Stark, Sein, Revolte, Richter)
+  - [Worker PHP](#worker-php-lawine-linie-lugner) (Lawine, Linie, Lugner)
+  - [Worker Laravel](#worker-laravel-frieren-flamme-fren) (Frieren, Flamme, Fren)
+- [Penyelesaian](#penyelesaian)
+  - [Permasalahan](#permasalahan)
+  - [Soal 1-5](#soal-1)
+  - [Soal 6-12](#soal-6)
+  - [Soal 13-20](#soal-13)
+- [Grimoire Summary](#grimoire-summary)
 
 # Setup
 
@@ -151,7 +146,7 @@ iface eth0 inet dhcp
 hwaddress ether 12:84:e8:38:6f:69
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## DNS Configuration (Heiter)
 
@@ -237,7 +232,7 @@ www         IN      CNAME   riegel.canyon.d22.com.
 service bind9 restart
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## DHCP Server (Himmel)
 
@@ -340,7 +335,7 @@ rm /var/run/dhcpd.pid
 service isc-dhcp-server restart
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## DHCP Relay (Aura)
 
@@ -367,7 +362,7 @@ echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
 service isc-dhcp-relay restart
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## Database Server (Denken)
 
@@ -409,7 +404,7 @@ skip-bind-address' > /etc/mysql/my.cnf
 service mysql restart
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## Load Balancer (Eisen)
 
@@ -445,7 +440,7 @@ ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
 service nginx restart
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## Client (Stark, Sein, Revolte, Richter)
 
@@ -479,7 +474,7 @@ if ! dpkg -l | grep -q jq; then
 fi
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## Worker PHP (Lawine, Linie, Lugner)
 
@@ -531,7 +526,7 @@ service php7.0-fpm start
 service nginx restart
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## Worker Laravel (Frieren, Flamme, Fren)
 
@@ -630,7 +625,7 @@ cd /var/www/laravel-praktikum-jarkom && php artisan config:clear
 chown -R www-data.www-data /var/www/laravel-praktikum-jarkom/storage
 ```
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 # Penyelesaian
 
@@ -689,7 +684,7 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 
 6. Nampaknya hanya menggunakan PHP-FPM tidak cukup untuk meningkatkan performa dari worker maka implementasikan Least-Conn pada Eisen. Untuk testing kinerja dari worker tersebut dilakukan sebanyak 100 request dengan 10 request/second. **(20)**
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## Soal 1
 
@@ -883,7 +878,7 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 - Client Sein (Switch 4)
   ![Untitled](Resource/img/Untitled%204.png)
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## Soal 6
 
@@ -1240,7 +1235,7 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 - Untuk membuktikan Pemberian akses, modifikasi konfigurasi untuk menambahkan allow 192.202.3.24; Lalu dilakukan pengujian ulang `berhasil`
   ![Untitled](Resource/img/Untitled%2031.png)
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 ## Soal 13
 
@@ -1592,7 +1587,7 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   ![Untitled](Resource/img/Untitled%2048.png)
   ![Untitled](Resource/img/Untitled%2049.png)
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
 
 # Grimoire Summary
 
@@ -1607,4 +1602,4 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 
 ### Analisis
 
-[<< Daftar Isi](https://www.notion.so/Jarkom-Modul-3-D22-2023-6e47b0c104624007b9dcfc679b2359d7?pvs=21)
+[<< Daftar Isi](#daftar-isi)
