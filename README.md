@@ -24,6 +24,10 @@
   - [Soal 6-12](#soal-6)
   - [Soal 13-20](#soal-13)
 - [Grimoire Summary](#grimoire-summary)
+  - [Permasalahan Grimoire](#permasalahan-grimoire)
+  - [Hasil Grimoire](#hasil-grimoire)
+- [Kendala Pengerjaan](#kendala-pengerjaan)
+
 
 # Setup
 
@@ -1589,17 +1593,226 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 
 [<< Daftar Isi](#daftar-isi)
 
+
 # Grimoire Summary
 
-### Hasil Testing
+## Permasalahan Grimoire
 
-1. Algo A
-2. Algo B
-3. Algo C
-4. Algo D
+1. Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut:
+    1. Nama Algoritma Load Balancer
+    2. Report hasil testing pada Apache Benchmark
+    3. Grafik request per second untuk masing masing algoritma.
+    4. Analisis **(8)**
+2. Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire. **(9)**
+3. Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
+    1. POST /auth/register **(15)**
+    2. POST /auth/login **(16)**
+    3. GET /me **(17)**
+4. Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frieren, Flamme, dan Fern. Untuk testing kinerja naikkan
+    - pm.max_children
+    - pm.start_servers
+    - pm.min_spare_servers
+    - pm.max_spare_servers
+    
+    sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire. **(19)**
+    
 
-### Grafik
+## Hasil Grimoire
 
-### Analisis
+### Soal 8
+
+**Hasil Testing :**
+
+1. **Round Robin**
+    
+    ![Untitled](Resource/img/Untitled%2010.png)
+    
+    ![Untitled](Resource/img/Untitled%2011.png)
+    
+2. **Least-connection** 
+    
+    ![Untitled](Resource/img/Untitled%2012.png)
+    
+    ![Untitled](Resource/img/Untitled%2013.png)
+    
+3. **IP Hash**
+    
+    ![Untitled](Resource/img/Untitled%2014.png)
+    
+    ![Untitled](Resource/img/Untitled%2015.png)
+    
+4. **Generic Hash**
+    
+    ![Untitled](Resource/img/Untitled%2016.png)
+    
+    ![Untitled](Resource/img/Untitled%2017.png)
+    
+
+**Tabel :**
+
+| Algoritma | Request per Second |
+| --- | --- |
+| Round Robin | 696,93 |
+| Least Connection | 589,82 |
+| IP Hash | 604,35 |
+| Generic IP | 642,04 |
+
+**Grafik :**
+
+![Untitled](Resource/img/Untitled%2050.png)
+
+**Annlisis :**
+
+Dari hasil uji load balancing di atas, didapatkan metode dengan hasil yang paling tinggi dalam request per second adalah round robin. Round robin sendrii adalah algoritma load balancing yan gmembagi lalu lintas secara merata dan bergantian, Keuntungan dari metode ini adalah sederhana dan mudah diimplementasikan. Round robin terhitung dapat menangani request paling banyak setiap detiknya, hal ini mungkin dikarenakan metodenya yang tidak terlalu rumit dan tidak membutuhkan komputasi yang tinggi untuk tes sederhana dari apache benchmark.
+
+Sedangkan posisi setelahnya yaitu Generic IP yang mengoptimalkan penyebaran beban kepada worker. Selanjutnya terdapat IP Hash yang memastikan bahwa permintaan dari alamat IP yang sama ditangai oleh server yang sama. dan yang terakhir yaitu least connection, algoritma ini kurang optimal dalam tes ab yang mengarahkan permintaan server ke koneksi terendah pada saat itu (beban terendah) untuk menangani permintaan baru.
+
+### Soal 9
+
+**Hasil Testing :**
+
+1. **Round Robin 1**
+    
+    ![Untitled](Resource/img/Untitled%2018.png)
+    
+    ![Untitled](Resource/img/Untitled%2019.png)
+    
+2. **Round Robin 2**
+    
+    ![Untitled](Resource/img/Untitled%2020.png)
+    
+    ![Untitled](Resource/img/Untitled%2021.png)
+    
+3. **Round Robin 3**
+    
+    ![Untitled](Resource/img/Untitled%2022.png)
+    
+    ![Untitled](Resource/img/Untitled%2023.png)
+    
+
+**Tabel :**
+
+| Algoritma | Request per Second |
+| --- | --- |
+| 1 Worker | 615,95 |
+| 2 Worker | 570,72 |
+| 3 Worker | 553,35 |
+
+**Grafik :**
+
+![Untitled](Resource/img/Untitled%2051.png)
+
+**Annlisis :**
+
+Dalam hasil uji load balancing Round Robin dengan jumalh worker yang berbeda, dapat terlihat bahwa penggunaan 1 worker memberikan kinerja yang lebih tinggi dalam menangani request epr detik dibandingkan dengan  2 worker maupun 3 worker. Hal ini dapat terjadi karena permintaan yang terhitung sedikit dalam tes ab, sehingga 1 worker sudah sangat cukup untuk menangani request tersebut tanpa harus bergantian dengan worker lain yang mungkin memakan lebih waktu untuk penangannanya. Namun jika permintaan ab dimasukkan dalam skala yang besar, dimana 1 worker tidak cukup untuk menangani semua request, penambahan worker dapat menajadi solusi yang optimal.
+
+### Soal 15-17
+
+Response :
+
+1. POST /auth/register
+    
+    ![Untitled](Resource/img/Untitled%2052.png)
+    
+2. POST /auth/login 
+    
+    ![Untitled](Resource/img/Untitled%2053.png)
+    
+3. GET /me 
+    
+    ![Untitled](Resource/img/Untitled%2054.png)
+    
+
+**Hasil Testing :**
+
+1. POST /auth/register
+    
+    ![Untitled](Resource/img/Untitled%2035.png)
+    
+2. POST /auth/login 
+    
+    ![Untitled](Resource/img/Untitled%2037.png)
+    
+3. GET /me 
+    
+    ![Untitled](Resource/img/Untitled%2038.png)
+    
+
+### Soal 19
+
+Konfigurasi :
+
+1. Percobaan 1
+    
+    ```python
+    pm = dynamic
+    pm.max_children = 50
+    pm.start_servers = 10
+    pm.min_spare_servers = 2
+    pm.max_spare_servers = 15
+    pm.process_idle_timeout = 10s
+    ```
+    
+2. Percobaan 2
+    
+    ```python
+    pm = dynamic
+    pm.max_children = 75
+    pm.start_servers = 15
+    pm.min_spare_servers = 5
+    pm.max_spare_servers = 25
+    pm.process_idle_timeout = 10s
+    ```
+    
+- Percobaan 3
+    
+    ```python
+    pm = dynamic
+    pm.max_children = 100
+    pm.start_servers = 20
+    pm.min_spare_servers = 10
+    pm.max_spare_servers = 30
+    pm.process_idle_timeout = 10s
+    ```
+    
+
+**Hasil Testing :**
+
+1. Percobaan 1
+    
+    ![Untitled](Resource/img/Untitled%2042.png)
+    
+    ![Untitled](Resource/img/Untitled%2043.png)
+    
+2. Percobaan 2
+    
+    ![Untitled](Resource/img/Untitled%2044.png)
+    
+    ![Untitled](Resource/img/Untitled%2045.png)
+    
+3. Percobaan 3
+    
+    ![Untitled](Resource/img/Untitled%2046.png)
+    
+    ![Untitled](Resource/img/Untitled%2047.png)
+    
+
+**Tabel :**
+
+| Percobaan | Request per Second |
+| --- | --- |
+| 1 | 894,41 |
+| 2 | 768,39 |
+| 3 | 786,62 |
+
+**Annlisis :**
+
+Dari hasil pengujian penambahan pm.max_children, pm.start_servers, pm.min_spare_servers, pm.max_spare_servers. Seiring dengan adanya penambahan  pada variable di atas, kinerja untuk menerima request semakin menurutn. Hal ini dapat terjadi disebabkan beban yang diterima dalam satu waktu semakin besar dan menyebabkan komputasi mengalami overhead yang menyebabkan perlambatan dalam menerima request. Jika Resource yang dimiliki komputer cukup tinggi, penambahan konfigurasi pada variable tersebut mungkin dapat meningkatkan kinerja permintaan request.
+
+[<< Daftar Isi](#daftar-isi)
+
+## Kendala Pengerjaan
+
+- Sempat salah dalam memilih image docker berupa ubuntu-1 bukan debian sehingga cukup membingungkan karena tidak dapat digunakan untuk menginstall composer
 
 [<< Daftar Isi](#daftar-isi)
