@@ -1,0 +1,92 @@
+== Router ==
+
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+	address 192.202.1.200
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address 192.202.2.200
+	netmask 255.255.255.0
+
+auto eth3
+iface eth3 inet static
+	address 192.202.3.200
+	netmask 255.255.255.0
+
+auto eth4
+iface eth4 inet static
+	address 192.202.4.200
+	netmask 255.255.255.0
+
+== Himmel ==
+
+auto eth0
+iface eth0 inet static
+	address 192.202.1.1
+	netmask 255.255.255.0
+	gateway 192.202.1.200
+
+== Heiter ==
+	
+auto eth0
+iface eth0 inet static
+	address 192.202.1.2
+	netmask 255.255.255.0
+	gateway 192.202.1.200
+	
+== Denken ==
+
+auto eth0
+iface eth0 inet static
+	address 192.202.2.1
+	netmask 255.255.255.0
+	gateway 192.202.2.200
+	
+== Eisen ==
+
+auto eth0
+iface eth0 inet static
+	address 192.202.2.2
+	netmask 255.255.255.0
+	gateway 192.202.2.200
+	
+== Lawine ==
+
+auto eth0
+iface eth0 inet dhcp
+hwaddress ether 8a:d5:ad:4c:82:4d
+
+== Linie ==
+
+auto eth0
+iface eth0 inet dhcp
+hwaddress ether 52:d9:63:1f:56:63
+
+== Lugner ==
+
+auto eth0
+iface eth0 inet dhcp
+hwaddress ether 0a:82:69:30:bd:ed
+
+== Frieren ==
+
+auto eth0
+iface eth0 inet dhcp
+hwaddress ether 36:6a:5c:9e:d1:20
+
+== Flamme ==
+
+auto eth0
+iface eth0 inet dhcp
+hwaddress ether 22:c6:85:28:61:37
+
+== Fern ==
+
+auto eth0
+iface eth0 inet dhcp
+hwaddress ether 12:84:e8:38:6f:69

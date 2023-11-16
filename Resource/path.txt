@@ -1,0 +1,27 @@
+==> Configuration
+/etc/network/interfaces
+
+==> DNS Nameserver
+/etc/resolv.conf
+
+==> DHCP Relay
+/etc/default/isc-dhcp-relay
+/etc/sysctl.conf
+
+==> DHCP Server
+/etc/default/isc-dhcp-server
+/etc/dhcp/dhcpd.conf
+/var/run/dhcpd.pid
+
+==> PHP Worker
+/var/www/granz.channel.d22.com
+/etc/nginx/sites-available/default
+/etc/nginx/sites-enabled
+nano /etc/php/7.0/fpm/pool.d/dressrosa.conf
+
+/etc/nginx/nginx.conf
+
+==> LB
+least_conn;
+ip_hash;
+hash $request_uri consistent;

@@ -1,0 +1,30 @@
+==> AURA
+telnet 192.168.0.3  5056
+==> HIMMEL
+telnet 192.168.0.3  5048
+==> HEITER
+telnet 192.168.0.3  5046
+==> DENKEN
+telnet 192.168.0.3  5041
+==> EISEN
+telnet 192.168.0.3  5039
+==> LUGNER
+telnet 192.168.0.3  5043
+==> LINIE
+telnet 192.168.0.3  5058
+==> LAWINE
+telnet 192.168.0.3  5060
+==> FERN
+telnet 192.168.0.3  5007
+==> FLAMME
+telnet 192.168.0.3  5009
+==> FRIEREN
+telnet 192.168.0.3  5011
+==> RICHTER
+telnet 192.168.0.3  5062
+==> REVOLTE
+telnet 192.168.0.3  5050
+==> SEIN
+telnet 192.168.0.3  5070
+==> STARK
+telnet 192.168.0.3  5072
