@@ -949,12 +949,7 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 
 ## Soal 7
 
-> Kepala suku dari [Bredt Region](https://frieren.fandom.com/wiki/Bredt_Region) memberikan resource server sebagai berikut:
-
-1. Lawine, 4GB, 2vCPU, dan 80 GB SSD.
-2. Linie, 2GB, 2vCPU, dan 50 GB SSD.
-3. Lugner 1GB, 1vCPU, dan 25 GB SSD.
-   > aturlah agar Eisen dapat bekerja dengan maksimal, lalu lakukan testing dengan 1000 request dan 100 request/second. (7)
+> Kepala suku dari [Bredt Region](https://frieren.fandom.com/wiki/Bredt_Region) memberikan resource server sebagai berikut: 1. Lawine, 4GB, 2vCPU, dan 80 GB SSD.2. Linie, 2GB, 2vCPU, dan 50 GB SSD. 3. Lugner 1GB, 1vCPU, dan 25 GB SSD. aturlah agar Eisen dapat bekerja dengan maksimal, lalu lakukan testing dengan 1000 request dan 100 request/second. (7)
 
 ### Solusi
 
@@ -1453,13 +1448,7 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 
 ## Soal 19
 
-> Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frieren, Flamme, dan Fern. Untuk testing kinerja naikkan
-
-- pm.max_children
-- pm.start_servers
-- pm.min_spare_servers
-- pm.max_spare_servers
-  > sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire.(19)
+> Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frieren, Flamme, dan Fern. Untuk testing kinerja naikkan pm.max_children, pm.start_servers, pm.min_spare_servers, pm.max_spare_servers. Sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire.(19)
 
 ### Solusi
 
