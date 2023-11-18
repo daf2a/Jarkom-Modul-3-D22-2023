@@ -164,7 +164,6 @@ if ! dpkg -l | grep -q bind9; then
   apt-get install bind9 -y
 fi
 
-# Setting DNS
 echo "
 zone \"granz.channel.d22.com\" {
     type master;
@@ -177,7 +176,6 @@ zone \"riegel.canyon.d22.com\" {
 };
 " > /etc/bind/named.conf.local
 
-# Setting options
 echo "
 options {
         directory \"/var/cache/bind\";
@@ -194,7 +192,6 @@ options {
 };
 " > /etc/bind/named.conf.options
 
-# Setting granz
 mkdir -p /etc/bind/granz
 echo "
 ;
@@ -213,7 +210,6 @@ echo "
 www               IN      CNAME   granz.channel.d22.com.
 " > /etc/bind/granz/granz.channel.d22.com
 
-# Setting riegel
 mkdir -p /etc/bind/riegel
 echo "
 ;
@@ -232,7 +228,6 @@ echo "
 www         IN      CNAME   riegel.canyon.d22.com.
 " > /etc/bind/riegel/riegel.canyon.d22.com
 
-# Start services
 service bind9 restart
 ```
 
@@ -241,16 +236,13 @@ service bind9 restart
 ## DHCP Server (Himmel)
 
 ```bash
-#install isc-dhcp-server
 apt-get update
 if ! dpkg -l | grep -q isc-dhcp-server; then
     apt-get install isc-dhcp-server -y
 fi
 
-# Setting DNS
 echo 'nameserver 192.202.1.2 # IP Heiter' > /etc/resolv.conf
 
-# Setting DHCP
 echo "
 INTERFACESv4=\"eth0\"
 INTERFACESv6=\"\"
@@ -258,26 +250,20 @@ INTERFACESv6=\"\"
 
 echo "
 ddns-update-style none;
-option domain-name \"example.org\";
-option domain-name-servers ns1.example.org, ns2.example.org;
-
 default-lease-time 600;
 max-lease-time 7200;
 
 authoritative;
 log-facility local7;
 
-# eth1
 subnet 192.202.1.0 netmask 255.255.255.0 {
   option routers 192.202.1.200;
 }
 
-# eth2
 subnet 192.202.2.0 netmask 255.255.255.0 {
   option routers 192.202.2.200;
 }
 
-# eth3
 subnet 192.202.3.0 netmask 255.255.255.0 {
     range 192.202.3.16 192.202.3.32;
     range 192.202.3.64 192.202.3.80;
@@ -288,7 +274,6 @@ subnet 192.202.3.0 netmask 255.255.255.0 {
     max-lease-time 5760;
 }
 
-# eth4
 subnet 192.202.4.0 netmask 255.255.255.0 {
     range 192.202.4.12 192.202.4.20;
     range 192.202.4.160 192.202.4.168;
@@ -299,7 +284,6 @@ subnet 192.202.4.0 netmask 255.255.255.0 {
     max-lease-time 5760;
 }
 
-# Switch 3
 host Lawine {
     hardware ethernet 8a:d5:ad:4c:82:4d;
     fixed-address 192.202.3.1;
@@ -315,7 +299,6 @@ host Lugner {
     fixed-address 192.202.3.3;
 }
 
-# Switch 4
 host Frieren {
     hardware ethernet 36:6a:5c:9e:d1:20;
     fixed-address 192.202.4.1;
@@ -332,10 +315,7 @@ host Fern {
 }
 " > /etc/dhcp/dhcpd.conf
 
-#remove old pid
 rm /var/run/dhcpd.pid
-
-#restart service
 service isc-dhcp-server restart
 ```
 
@@ -346,23 +326,19 @@ service isc-dhcp-server restart
 ```bash
 #!/bin/bash
 
-# Install isc-dhcp-relay
 apt-get update
 if ! dpkg -l | grep -q isc-dhcp-relay; then
     apt-get install isc-dhcp-relay -y
 fi
 
-# Setting DHCP to
 echo "
 SERVERS=\"192.202.1.1\"
 INTERFACES=\"eth1 eth2 eth3 eth4\"
 OPTIONS=
 " > /etc/default/isc-dhcp-relay
 
-# Setting IP Forwarding
 echo "net.ipv4.ip_forward=1" > /etc/sysctl.conf
 
-# Restarting services
 service isc-dhcp-relay restart
 ```
 
@@ -621,7 +597,7 @@ VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
 VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"' > /var/www/laravel-praktikum-jarkom/.env
 cd /var/www/laravel-praktikum-jarkom && php artisan key:generate
 cd /var/www/laravel-praktikum-jarkom && php artisan config:cache
-cd /var/www/laravel-praktikum-jarkom && php artisan migrate
+cd /var/www/laravel-praktikum-jarkom && php artisan migrate:fresh
 cd /var/www/laravel-praktikum-jarkom && php artisan db:seed
 cd /var/www/laravel-praktikum-jarkom && php artisan storage:link
 cd /var/www/laravel-praktikum-jarkom && php artisan jwt:secret
@@ -699,7 +675,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 - Atur konfigurasi setiap node sesuai dengan setup yang telah ada di atas
 - Untuk register domain pada `riegel.canyon.d22.com` dan `granz.chanel.d22.com` yang mengarah ke worker dengan ip `192.168.x.`tambakan ini dalam Heiter (DNS Server)
   ```python
-  # Setting DNS
   echo "
   zone \"granz.channel.d22.com\" {
       type master;
@@ -712,7 +687,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   };
   " > /etc/bind/named.conf.local
 
-  # Setting options
   echo "
   options {
           directory \"/var/cache/bind\";
@@ -728,7 +702,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   };
   " > /etc/bind/named.conf.options
 
-  # Setting granz
   mkdir -p /etc/bind/granz
   echo "
   ;
@@ -747,7 +720,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   www               IN      CNAME   granz.channel.d22.com.
   " > /etc/bind/granz/granz.channel.d22.com
 
-  # Setting riegel
   mkdir -p /etc/bind/riegel
   echo "
   ;
@@ -787,6 +759,11 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   }
   ```
 
+### Screenshot Hasil
+
+- Client Richter (Switch 3)
+  ![Untitled](Resource/img/Untitled%203.png)
+
 ## Soal 3
 
 > 3. Client yang melalui Switch4 mendapatkan range IP dari [prefix IP].4.12 - [prefix IP].4.20 dan [prefix IP].4.160 - [prefix IP].4.168 **(3)**
@@ -802,6 +779,11 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
       option routers 192.202.4.200;
   }
   ```
+
+### Screenshot Hasil
+
+- Client Sein (Switch 4)
+  ![Untitled](Resource/img/Untitled%204.png)
 
 ## Soal 4
 
@@ -916,7 +898,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
               try_files \$uri \$uri/ /index.php?\$query_string;
       }
 
-      # pass PHP scripts to FastCGI server
       location ~ \.php\$ {
               include snippets/fastcgi-php.conf;
               fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
@@ -968,7 +949,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   www               IN      CNAME   granz.channel.d22.com.
   " > /etc/bind/granz/granz.channel.d22.com
 
-  # Setting riegel
   echo "
   ;
   ; BIND data file for local loopback interface
@@ -986,10 +966,9 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   www         IN      CNAME   riegel.canyon.d22.com.
   " > /etc/bind/riegel/riegel.canyon.d22.com
 
-  # Start services
   service bind9 restart
   ```
-- Pada Eisen, berikan konfigurasi LB dengan nginx sebagai berikut
+- Pada Eisen, berikan konfigurasi LB dengan nginx sebagai berikut dengan manipulasi sesuai dengan spesifikasi pada soal yaitu lawine 4GB 2vCPU diberikan weight 8, linie 2GB 2vCPU diberikan weight 4, dan lugner 1GB 1vCPU diberikan weight 1
   ```python
   echo 'nameserver 192.168.122.1' > /etc/resolv.conf
 
@@ -998,9 +977,9 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 
   echo '
   upstream backend {
-   	server 192.202.3.1;
-   	server 192.202.3.2;
-    server 192.202.3.3;
+   	server 192.202.3.1 weight=8;
+   	server 192.202.3.2 weight=4;
+    server 192.202.3.3 weight=1;
   }
 
   server {
@@ -1047,7 +1026,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 2. Report hasil testing pada Apache Benchmark
 3. Grafik request per second untuk masing masing algoritma.
 4. Analisis **(8)**
-   >
 
 ### Solusi
 
@@ -1222,12 +1200,42 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
    	}
   ```
 
+- Tambahkan konfigurasi untuk Fix IP client pada DHCP Server (Himmel)
+  ```python
+  host Revolte {
+      hardware ethernet 0b:14:21:14:bd:e0;
+      fixed-address 192.202.3.69;
+  }
+
+  host Richter {
+      hardware ethernet 38:6b:5d:9a:d1:43;
+      fixed-address 192.202.3.70;
+  }
+
+  host Sein {
+      hardware ethernet 12:d6:25:38:11:27;
+      fixed-address 192.202.4.167;
+  }
+
+  host Stark {
+      hardware ethernet 32:34:a8:48:6d:10;
+      fixed-address 192.202.4.168;
+  }
+  ```
+
+- Lalu lakukan konfigurasi juga terhadap masing masing client seperti ini 
+```python
+  auto eth0
+  iface eth0 inet dhcp
+  hwaddress ether [sesuaikan dengan konfigurasi di atas]
+```
+
 ### Screenshot Hasil
 
 - Pada Richter dengan IP acak 192.202.3.24; `Tidak bisa Akses`
   ![Untitled](Resource/img/Untitled%2029.png)
   ![Untitled](Resource/img/Untitled%2030.png)
-- Untuk membuktikan Pemberian akses, modifikasi konfigurasi untuk menambahkan allow 192.202.3.24; Lalu dilakukan pengujian ulang `berhasil`
+- Untuk membuktikan Pemberian akses, IP dari Client di Fix kan agar sesuai dengan hak akses pada LB. Lalu dilakukan pengujian ulang `berhasil`
   ![Untitled](Resource/img/Untitled%2031.png)
 
 [<< Daftar Isi](#daftar-isi)
@@ -1286,8 +1294,8 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   ```python
   echo 'server {
       listen 8001; # Frieren
-  		listen 8002; # Flamme
-  		listen 8003; # Fren
+      listen 8002; # Flamme
+      listen 8003; # Fren
 
       root /var/www/laravel-praktikum-jarkom/public;
 
@@ -1298,7 +1306,6 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
               try_files $uri $uri/ /index.php?$query_string;
       }
 
-      # pass PHP scripts to FastCGI server
       location ~ \.php$ {
         include snippets/fastcgi-php.conf;
         fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
@@ -1344,11 +1351,17 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   ```python
   ab -n 100 -c 10 -p register.json -T application/json http://192.202.4.1:8001/api/auth/register
   ```
+- Untuk mendapatkan response, lakukan curl seperti berikut
+  ```python
+  curl -X POST -H "Content-Type: application/json" -d @register.json http://192.202.4.1:8001/api/auth/register -o register_response.txt
+  ```
 
 ### Screenshot Hasil
 
 - Pengujian apache benchmark dari Sein (Client) ke Frieren (Worker Laravel)
   ![Untitled](Resource/img/Untitled%2035.png)
+- Response
+  ![Untitled](Resource/img/Untitled%2052.png)
 
 ## Soal 16
 
@@ -1368,6 +1381,10 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   ```python
   ab -n 100 -c 10 -p register.json -T application/json http://192.202.4.1:8001/api/auth/login
   ```
+- Untuk mendapatkan response, lakukan curl seperti berikut
+  ```python
+  curl -X POST -H "Content-Type: application/json" -d @register.json http://192.202.4.1:8001/api/auth/login > login_response.txt
+  ```
 
 ### Screenshot Hasil
 
@@ -1375,6 +1392,8 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
   ![Untitled](Resource/img/Untitled%2036.png)
 - Hasil Akhir
   ![Untitled](Resource/img/Untitled%2037.png)
+- Response
+  ![Untitled](Resource/img/Untitled%2053.png)
 
 ## Soal 17
 
@@ -1384,21 +1403,27 @@ Karena para petualang kehabisan uang, mereka kembali bekerja untuk mengatur **gr
 
 - Pada endpoint Get /me diperlukan Request Header berupa Bearer Token, oleh karena itu sebelum mengakses perlu didapatkan tokennya terlebih dahulu
   ```python
-  curl -X POST -H "Content-Type: application/json" -d @register.json http://192.202.4.1:8001/api/auth/login > login_output.txt
+  curl -X POST -H "Content-Type: application/json" -d @register.json http://192.202.4.1:8001/api/auth/login > login_response.txt
   ```
 - Setelah mendapatkan token, set token sebagai global
   ```python
-  token=$(cat login_output.txt | jq -r '.token')
+  token=$(cat login_response.txt | jq -r '.token')
   ```
 - Jalankan Testing
   ```python
   ab -n 100 -c 10 -H "Authorization: Bearer $token" http://192.202.4.1:8001/api/me
+  ```
+- Untuk mendapatkan response, lakukan curl seperti berikut
+  ```python
+  curl -X GET -H "Authorization: Bearer $token" http://192.202.4.1:8001/api/me > get_response.txt
   ```
 
 ### Screenshot Hasil
 
 - Pengujian apache benchmark dari Sein (Client) ke Frieren (Worker Laravel)
   ![Untitled](Resource/img/Untitled%2038.png)
+- Response
+  ![Untitled](Resource/img/Untitled%2054.png)
 
 ## Soal 18
 
